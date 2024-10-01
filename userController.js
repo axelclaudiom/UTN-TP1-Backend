@@ -68,8 +68,21 @@ async function addUser(nombre, apellido, email, password) {
     }
 }
 
+// Modificar usuario existente
+async function updateUser(id, nombre, apellido, email, password) {
+   
+        users[userIndex].nombre = nombre || users[userIndex].nombre;
+        users[userIndex].apellido = apellido || users[userIndex].apellido;
+        users[userIndex].email = email || users[userIndex].email;
+
+        saveUsers(users);
+        console.log('Usuario actualizado exitosamente');
+
+}
+
 module.exports = {
     listUsers,
     getUserById,
     addUser,
+    updateUser,
 };
