@@ -1,3 +1,4 @@
+const { listUsers, getUserById, addUser, updateUser, deleteUser } = require('./userController');
 const args = process.argv.slice(2);
 
 switch (args[0]) {
