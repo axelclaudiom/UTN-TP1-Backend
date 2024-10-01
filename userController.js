@@ -20,6 +20,22 @@ function listUsers() {
     }
 }
 
+// Mostrar usuario por ID
+function getUserById(id) {
+    try {
+        const users = loadUsers();
+        const user = users.find(u => u.id === id);
+        if (user) {
+            console.log(user);
+        } else {
+            throw new Error('Usuario no encontrado');
+        }
+    } catch (error) {
+        logError(error);
+    }
+}
+
 module.exports = {
     listUsers,
+    getUserById,
 };
