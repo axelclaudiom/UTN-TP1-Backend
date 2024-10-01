@@ -97,6 +97,19 @@ async function updateUser(id, nombre, apellido, email, password) {
     }
 }
 
+// Eliminar usuario por ID
+function deleteUser(id) {
+        const users = loadUsers();
+        const newUsers = users.filter(u => u.id !== id);
+
+        if (newUsers.length === users.length) {
+            throw new Error('Usuario no encontrado');
+        }
+
+        saveUsers(newUsers);
+        console.log('Usuario eliminado exitosamente');
+}
+
 module.exports = {
     listUsers,
     getUserById,
