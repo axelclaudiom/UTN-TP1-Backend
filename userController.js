@@ -1,7 +1,7 @@
 const fs = require('fs');
 const { v4: uuidv4 } = require('uuid');
 const bcrypt = require('bcrypt');
-const { logError } = require('./utils.js');
+const { logError } = require('./utils');
 
 const USERS_FILE = './data/users.json';
 const LOG_FILE = './error/log.json';
@@ -15,7 +15,6 @@ function loadUsers() {
 function saveUsers(users) {
     fs.writeFileSync(USERS_FILE, JSON.stringify(users, null, 2));
 }
-
 
 // Mostrar todos los usuarios
 function listUsers() {
@@ -99,6 +98,7 @@ async function updateUser(id, nombre, apellido, email, password) {
 
 // Eliminar usuario por ID
 function deleteUser(id) {
+    try {
         const users = loadUsers();
         const newUsers = users.filter(u => u.id !== id);
 
@@ -108,6 +108,9 @@ function deleteUser(id) {
 
         saveUsers(newUsers);
         console.log('Usuario eliminado exitosamente');
+    } catch (error) {
+        logError(error);
+    }
 }
 
 module.exports = {
@@ -115,4 +118,5 @@ module.exports = {
     getUserById,
     addUser,
     updateUser,
+    deleteUser
 };
