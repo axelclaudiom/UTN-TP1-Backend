@@ -71,6 +71,21 @@ async function addUser(nombre, apellido, email, password) {
 // Modificar usuario existente
 async function updateUser(id, nombre, apellido, email, password) {
     try {
+        const users = loadUsers();
+        const userIndex = users.findIndex(u => u.id === id);
+        if (userIndex === -1) {
+            throw new Error('Usuario no encontrado');
+        }
+
+        if (email && users.some(u => u.email === email && u.id !== id)) {
+            throw new Error('Email ya registrado por otro usuario');
+        }
+
+        if (password) {
+            const hashedPassword = await bcrypt.hash(password, 10);
+            users[userIndex].password = hashedPassword;
+        }
+
         users[userIndex].nombre = nombre || users[userIndex].nombre;
         users[userIndex].apellido = apellido || users[userIndex].apellido;
         users[userIndex].email = email || users[userIndex].email;
