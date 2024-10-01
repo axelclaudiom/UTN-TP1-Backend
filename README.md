@@ -26,3 +26,20 @@ user-management/
 ├── userController.js   # Controlador con las operaciones CRUD.
 ├── utils.js            # Funciones auxiliares como el manejo de errores.
 └── README.md           # Este archivo.
+```
+
+
+## Requisitos
+- **Node.js** (versión 12 o superior).
+- **Dependencias**:
+    - **uuid**: para la generación de IDs únicos.
+    - **bcrypt**: para el hash de las contraseñas.
+
+## Uso de la Aplicación
+Desde la terminal, puedes ejecutar los siguientes comandos:
+
+- **Listar usuarios**: node index.js list
+- **Obtener un usuario por ID**: node index.js get <id>
+- **Agregar un usuario**: node index.js add "Juan" "Perez" "juan@example.com" "password123"
+- **Actualizar un usuario**: node index.js update <id> "NuevoNombre" "NuevoApellido" "nuevoemail@example.com" "nuevapassword"
+- **Eliminar un usuario**: node index.js delete <id>
